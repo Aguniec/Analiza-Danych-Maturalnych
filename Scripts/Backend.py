@@ -37,11 +37,10 @@ def pass_rate(csv_file, voivodeship):
         for year in range(2010, 2019):  
             csv_file.seek(0)
             for row in csvreader:
-                if row[1] == "przystąpiło" and row[0] == voivodeship:
-                    if int(row[3]) == year:                        
+                if row[0] == voivodeship and int(row[3]) == year: 
+                    if row[1] == "przystąpiło" :                      
                         proceed_to_the_exam.append(row[4])   
-                if row[1] == "zdało" and row[0] == voivodeship:
-                    if int(row[3]) == year:
+                    if row[1] == "zdało":
                         pass_the_exam.append(row[4])
             proceed_sum = sum([int(i) for i in proceed_to_the_exam])
             pass_sum = sum([int(i) for i in pass_the_exam])
@@ -55,39 +54,39 @@ def pass_rate(csv_file, voivodeship):
 
 #Najlepsze województwo
 
-def best_voivodeship(csv_file):
+def best_voivodeship(csv_file, year):
+    year = input()
     csvreader = csv.reader(csv_file, delimiter=';')
     proceed_to_the_exam = []
     pass_the_exam = []
-    dict_of_rate = {}
-    for year in range(2010, 2019):  
-        csv_file.seek(0)
-        for row in csvreader:
-            if row[1] == "przystąpiło" :
-                if int(row[3]) == year:                        
-                    proceed_to_the_exam.append(row[4])   
+    percentage_rate_array = []
+    dict_of_rate = {} 
+    csv_file.readline() #skip the first line
+    for row in csvreader:
+        if row[3] == year:
+            if row[1] == "przystąpiło" :                       
+                proceed_to_the_exam.append(row[4])   
             if row[1] == "zdało" :
-                if int(row[3]) == year:
-                    pass_the_exam.append(row[4])
-        
-        proceed_sum = sum([int(i) for i in proceed_to_the_exam])
-        pass_sum = sum([int(i) for i in pass_the_exam])
-        percentage_rate = math.floor(100 * (pass_sum / proceed_sum))
-        dict_of_rate.__setitem__(year, percentage_rate)
+                pass_the_exam.append(row[4])
+            proceed_sum = sum([int(i) for i in proceed_to_the_exam])
+            pass_sum = sum([int(i) for i in pass_the_exam])
+            percentage_rate = math.floor(100 * (pass_sum / proceed_sum))
+            percentage_rate_array.append(percentage_rate)
+        for i in percentage_rate_array:
+            dict_of_rate[row[0]] = i
+    print(dict_of_rate)
 #            print(year,"-", percentage_rate, "%")
-    list_of_values = list(dict_of_rate.values())
-    print(list_of_values)
+#    list_of_values = list(dict_of_rate.values())
+#    print(list_of_values)
 
 if __name__ == "__main__":
     with open('Liczba_osób_które_przystapiły_lub_zdały_egzamin_maturalny.csv', newline="", encoding="utf-8") as csv_file:
 #        avearge(csv_file, year = "", voivodeship = "")
-        pass_rate(csv_file, voivodeship = "")
-#        best_voivodeship(csv_file)
+#       pass_rate(csv_file, voivodeship = "")
+        best_voivodeship(csv_file, year = "")
         
 
-        
-
-#    best_voivodeship()
+  
 
 
 """
