@@ -1,6 +1,7 @@
 import csv
 import math
 import operator
+import os
 
 
 def open_file():
@@ -8,23 +9,65 @@ def open_file():
         'Liczba_osób_które_przystapiły_lub_zdały_egzamin_maturalny.csv', newline="", encoding="utf-8")
     open_file.reader = csv.reader(open_file.csv_file, delimiter=';')
 
+def program():                  
+        menu()
+
+def menu():
+#    os.system('cls' if os.name == 'nt' else 'clear')
+    print("Super program!")
+    print("Instrukcje:")
+    print("Wpisz 1, aby obliczyć średnią lilość osób przystępujących do matury w danym województwie")
+    print("Wpisz 2, aby obliczyć procentowej zdawalności dla danego województwa na przestrzeni lat")
+    print("Wpisz 3, aby znależć województwo o najlepszej zdawalności w danym roku")
+    print("Wpisz 4, aby wykryć województwa, które zanotowały regresję")
+    print('Wpisz 5, aby porównać zdawlaność w dwóch województwach')
+    print("Wpisz 6, aby wrócić do tego ekranu")
+    print("Wpisz esc aby wyjść")
+    check_input()
+
+
+def check_input():
+    while input != "esc":
+        print("Wpisz polecenie:")
+        command = input()
+        if command == "1":
+            average()
+        elif command == "2":
+            VoivodeshipDependency.pass_rate_for_voivodeship(voivodeship="")
+        elif command == "3":
+            YearDependency.best_voivodeship(year="")
+        elif command == "4":
+            YearDependency.regression_detect(year="")
+        elif command == "5":
+            VoivodeshipDependency.voivodeship_compare(voivodeship_1 = "", voivodeship_2 = "")
+        elif command == "6":
+            menu()
+        elif command == "esc":
+            raise SystemExit
+        else:
+            print("Nieznane polecenie")
+
+
+
 
 def average(year, voivodeship):
-    year = input()
+    print("Podaj rok")
+    year = int(input())
     voivodeship = input()
-    total = []
+    
     open_file()
-    try:
+    for i in range(2010,int(year)+1):
+        total = []
         for row in open_file.reader:
-            if row[3] == year and row[0] == voivodeship:
-                for i in range(2010,int(year)+1):
-                    total.append(int(row[4]))
-        total_sum = sum(total)
-        total_avg = int(total_sum / len(total))
+            if row[3] == i and row[0] == voivodeship:
+                total.append(int(row[4]))
+    total_sum = sum(total)
+    print(total_sum)
+    #total_avg = int(total_sum / len(total))
 
-        print("Total average: ", total_avg)
-    except:
-        print("Incorrect year or voivodeship")
+    #print("Total average: ", total_avg)
+    
+#    print("Incorrect year or voivodeship")
 
 
 class VoivodeshipDependency():
@@ -54,14 +97,14 @@ class VoivodeshipDependency():
         return percentage_rate_dict
 
     def pass_rate_for_voivodeship(voivodeship):
-        voivodeship = input()
+        voivodeship = input("Podaj województwo: ")
         pass_items = VoivodeshipDependency.percentage_dict_for_voivodeship(voivodeship)
         for i in (pass_items):
             print(i, pass_items[i], "%")
 
     def voivodeship_compare(voivodeship_1, voivodeship_2):
-        voivodeship_1 = input()
-        voivodeship_2 = input()
+        voivodeship_1 = input("Podaj pierwsze województwo: ")
+        voivodeship_2 = input("Podaj drugie województwo: ")
         voivodeship_compare_1 = VoivodeshipDependency.percentage_dict_for_voivodeship(voivodeship_1)
         voivodeship_compare_2 = VoivodeshipDependency.percentage_dict_for_voivodeship(voivodeship_2)
         for x_value, y_value in zip(voivodeship_compare_1.items(), voivodeship_compare_2.items()):
@@ -99,14 +142,14 @@ class YearDependency():
         return pass_rate_dict
 
     def best_voivodeship(year):
-        year = int(input())
+        year = int(input("Podaj rok: "))
         pass_rate_dict = YearDependency.pass_rate_dict_maker(year)
         max_pass_value = max(list(pass_rate_dict.values()))
         print(max(pass_rate_dict.items(), key=operator.itemgetter(1))
             [0], "-", math.floor(max_pass_value), "%")
 
     def regression_detect(year):
-        year = int(input())    
+        year = int(input("Podaj rok: "))    
         regression_second_dict = YearDependency.pass_rate_dict_maker(year - 1)
         regression_first_dict = YearDependency.pass_rate_dict_maker(year)       
         for x_value, y_value in zip(regression_first_dict.items(), regression_second_dict.items()):
@@ -117,11 +160,16 @@ class YearDependency():
 
 
 if __name__ == "__main__":
+    program()
 
-    YearDependency.best_voivodeship(year = "")
+
+#    YearDependency.average(year="", voivodeship="")
+#    YearDependency.best_voivodeship(year = "")
 #   VoivodeshipDependency.pass_rate_for_voivodeship(voivodeship="")
 #   VoivodeshipDependency.voivodeship_compare(voivodeship_1="", voivodeship_2="")
 #   YearDependency.regression_detect(year="")
     
-#    average(year= "", voivodeship="")
+#average(year= "", voivodeship="")
 
+
+#Zadanie 4, 1. Czy szukanie regresji ma się odbywać dla określonego roku czy dla wszystkich? 2. Jezeli dla wszystkich to czy nalezy podac tylko pierwszą, znalezioną regresję czy wszystkie. + Czy wywoływanie skrytpu ma się odbywać pooprzez odpalenie pliku .py w terminalu?
