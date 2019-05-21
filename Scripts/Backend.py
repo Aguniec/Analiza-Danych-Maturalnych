@@ -31,7 +31,7 @@ def check_input():
         print("Wpisz polecenie:")
         command = input()
         if command == "1":
-            average()
+            average(year="")
         elif command == "2":
             VoivodeshipDependency.pass_rate_for_voivodeship(voivodeship="")
         elif command == "3":
@@ -50,16 +50,14 @@ def check_input():
 
 
 
-def average(year, voivodeship):
+def average(year):
     print("Podaj rok")
     year = int(input())
-    voivodeship = input()
-    
     open_file()
     for i in range(2010,int(year)+1):
         total = []
         for row in open_file.reader:
-            if row[3] == i and row[0] == voivodeship:
+            if row[3]:
                 total.append(int(row[4]))
     total_sum = sum(total)
     print(total_sum)
@@ -149,27 +147,30 @@ class YearDependency():
             [0], "-", math.floor(max_pass_value), "%")
 
     def regression_detect(year):
-        year = int(input("Podaj rok: "))    
-        regression_second_dict = YearDependency.pass_rate_dict_maker(year - 1)
+        year = input()
+        pass_rate_dict = YearDependency.pass_rate_dict_maker(year)
+        print(pass_rate_dict)
+        
+        
+        
+"""        
+regression_second_dict = YearDependency.pass_rate_dict_maker(year - 1)
         regression_first_dict = YearDependency.pass_rate_dict_maker(year)       
         for x_value, y_value in zip(regression_first_dict.items(), regression_second_dict.items()):
             if x_value > y_value:
                 print(x_value[0])        
-
+"""
 
 
 
 if __name__ == "__main__":
-    program()
+#    program()
 
 
 #    YearDependency.average(year="", voivodeship="")
 #    YearDependency.best_voivodeship(year = "")
 #   VoivodeshipDependency.pass_rate_for_voivodeship(voivodeship="")
 #   VoivodeshipDependency.voivodeship_compare(voivodeship_1="", voivodeship_2="")
-#   YearDependency.regression_detect(year="")
+    YearDependency.regression_detect(year="")
     
 #average(year= "", voivodeship="")
-
-
-#Zadanie 4, 1. Czy szukanie regresji ma się odbywać dla określonego roku czy dla wszystkich? 2. Jezeli dla wszystkich to czy nalezy podac tylko pierwszą, znalezioną regresję czy wszystkie. + Czy wywoływanie skrytpu ma się odbywać pooprzez odpalenie pliku .py w terminalu?
