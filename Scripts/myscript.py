@@ -1,107 +1,146 @@
 import csv
 import math
 import operator
-
+import os
 
 
 def open_file():
-    open_file.csv_file = open(
-        'Liczba_osób_które_przystapiły_lub_zdały_egzamin_maturalny.csv', newline="", encoding="utf-8")
-    open_file.reader = csv.reader(open_file.csv_file, delimiter=';')
+    try:
+        open_file.csv_file = open(
+            'Liczba_osób_które_przystapiły_lub_zdały_egzamin_maturalny.csv', newline="", encoding="utf-8")
+        open_file.reader = csv.reader(open_file.csv_file, delimiter=';')
+    except:
+        FileExistsError
+
+
+def get_data():
+    data = []
+    filter = input(
+        "Set filter: (w - data for women, m - data for men, type nothing to get all the data): ")
+    open_file()
+    try:
+        if filter == "":
+            for row in open_file.reader:
+                if row[2] != "Płeć":
+                    data.append(row)
+        elif filter == "m":
+            for row in open_file.reader:
+                if row[2] == "mężczyźni":
+                    data.append(row)
+        elif filter == "w":
+            for row in open_file.reader:
+                if row[2] == "kobiety":
+                    data.append(row)
+        else:
+            print("Wrong filter")
+    except:
+        FileExistsError
+    return data
 
 
 def menu():
-#    os.system('cls' if os.name == 'nt' else 'clear')
-    print("Super program!")
-    print("Instrukcje:")
-    print("Wpisz 1, aby obliczyć średnią lilość osób przystępujących do matury w danym województwie")
-    print("Wpisz 2, aby obliczyć procentowej zdawalności dla danego województwa na przestrzeni lat")
-    print("Wpisz 3, aby znależć województwo o najlepszej zdawalności w danym roku")
-    print("Wpisz 4, aby wykryć województwa, które zanotowały regresję")
-    print('Wpisz 5, aby porównać zdawlaność w dwóch województwach')
-    print("Wpisz 6, aby wrócić do tego ekranu")
-    print("Wpisz esc aby wyjść")
-    check_input()
+    clear_screen()
+    print("Instrucions:")
+    print("Type 1 to calculate the average number of people entering the final year in the given province")
+    print("Type 2 to calculate the rate of success for a given province over the years")
+    print("Type 3 to find the province with the best pass rate in a given year")
+    print("Type 4 to detect province that have regressed")
+    print("Type 5 to compare the pass rate in two provinces")
+    print("Type 6 to go back to this screen")
+    print("Type esc to exit")
+
+
+def clear_screen():
+    os.system("cls" if os.name == "nt" else "clear")
 
 
 def check_input():
     while input != "esc":
-        print("Wpisz polecenie:")
+        print("Type command:")
         command = input()
         if command == "1":
-            average(year="")
+            menu()
+            average(year="", province="")
         elif command == "2":
-            pass_rate_for_voivodeship(voivodeship="")
+            menu()
+            pass_rate_for_province(province="")
         elif command == "3":
-            best_voivodeship(year="")
+            menu()
+            best_province(year="")
         elif command == "4":
-            regression_detect(year="")
+            menu()
+            regression_detection()
         elif command == "5":
-            voivodeship_compare(voivodeship_1 = "", voivodeship_2 = "")
+            menu()
+            province_compare(province_1="", province_2="")
         elif command == "6":
             menu()
         elif command == "esc":
             raise SystemExit
         else:
-            print("Nieznane polecenie")
+            print("Invalid command")
+            check_input()
+
     return command
 
+
 def program():
-    menu()
+    try:
+        menu()
+        check_input()
+    except:
+        pass
 
 
-def set_of_all_voivodeship():
-    open_file()
-    open_file.csv_file.readline()
-    vio_set = set()        
-    for row in open_file.reader:
-        vio_set.add(row[0])
-    return vio_set  
+def set_of_all_years(data):
 
-
-def set_of_all_years():
-    open_file()
-    open_file.csv_file.readline()
     year_set_temp = []
-    for row in open_file.reader:
-        year_set_temp.append(int(row[3]))
-    year_set = []
-    for new_element in year_set_temp:
-        if not new_element in year_set:
-            year_set.append(new_element)
+    try : 
+        for row in data:
+            year_set_temp.append(int(row[3]))
+        year_set = []
+        for new_element in year_set_temp:
+            if not new_element in year_set:
+                year_set.append(new_element)
+    except:
+        print("Invalid data")
+        pass
 
     return year_set
 
 
-def average(year, voivodeship):
+def average(year, province):
     year = int(input("Type year: "))
-    voivodeship = input("Type viovodoship: ")
-    open_file()
+    province = input("Type province: ")
+    
+    data = get_data()
+    year_set = set_of_all_years(data)
     array_of_people = []
-    try: 
-        for row in open_file.reader:
-            for i in range(2010, year+1):
-                if (row[0] == voivodeship and row[1] == "przystąpiło") and row[3] == str(i):
+    try:
+        for row in data:
+            for i in range(min(year_set), year+1):
+                if (row[0] == province and row[1] == "przystąpiło") and row[3] == str(i):
                     array_of_people.append(int(row[4]))
         sum_of_people = sum(array_of_people)
-        average_quantity_of_people = math.floor(sum_of_people / len (array_of_people))
-        print (average_quantity_of_people)
+        average_quantity_of_people = math.floor(
+            sum_of_people / len(array_of_people))
+        print(average_quantity_of_people)
     except:
-        print("Invalid year or viovodeship")
+        print("Invalid year or province")
+        pass
+
     return average_quantity_of_people
 
 
-def percentage_dict_for_voivodeship(voivodeship):
+def percentage_dict_for_province(province, data):
     proceed_to_the_exam = []
     pass_the_exam = []
-    percentage_rate_dict= {}
-    year_set = set_of_all_years()
-    open_file()
+    percentage_rate_dict = {}
+    year_set = set_of_all_years(data)
     try:
         for year in range(min(year_set), max(year_set)+1):
-            open_file.csv_file.seek(0)
-            for row in open_file.reader:
-                if row[0] == voivodeship and int(row[3]) == year:
+            for row in data:
+                if row[0] == province and int(row[3]) == year:
                     if row[1] == "przystąpiło":
                         proceed_to_the_exam.append(int(row[4]))
                     if row[1] == "zdało":
@@ -111,75 +150,54 @@ def percentage_dict_for_voivodeship(voivodeship):
             percentage_rate = math.floor(100 * (pass_sum / proceed_sum))
             percentage_rate_dict[year] = percentage_rate
     except:
-        print("Incorrect viovodoship")
+        print("Incorrect province")
+        pass
+
     return percentage_rate_dict
 
 
-def pass_rate_for_voivodeship(voivodeship):
-    voivodeship = input("Type viovodoship: ")
-    pass_items = percentage_dict_for_voivodeship(voivodeship)
-    for i in (pass_items):
-        print(i, "-", pass_items[i], "%")
+def pass_rate_for_province(province):
+    province = input("Type province: ")
+    data = get_data()
+    pass_items = percentage_dict_for_province(province, data)
+    try:
+        for i in (pass_items):
+            print(i, "-", pass_items[i], "%")
+    except:
+        print("Incorrect province")
+        pass
+
+    return pass_items
 
 
-def voivodeship_compare(voivodeship_1, voivodeship_2):
-    voivodeship_1 = input("Type first voivodeship : ")
-    voivodeship_2 = input("Type second voivodeship: ")
-    voivodeship_compare_1 = percentage_dict_for_voivodeship(voivodeship_1)
-    voivodeship_compare_2 = percentage_dict_for_voivodeship(voivodeship_2)
-    for x_value, y_value in zip(voivodeship_compare_1.items(), voivodeship_compare_2.items()):
-        if x_value > y_value:
-            print(x_value[0], voivodeship_1)
-        elif x_value < y_value:
-            print(x_value[0], voivodeship_2)
-        else:
-            print(x_value[0], "Equal")
-
-
-def best_voivodeship(year):
-    year = input("Podaj rok: ")
-    pass_rate_dict = pass_rate_dict_maker(year)
-    max_pass_value = max(list(pass_rate_dict.values()))
-
-    print(max(pass_rate_dict.items(), key=operator.itemgetter(1)))
-    print(max(pass_rate_dict.items(), key=operator.itemgetter(1))[0], "-", math.floor(max_pass_value), "%")
-
-
-def pass_rate_dict_maker(year):
-    open_file()
-    proceed_women_dict = {}
-    proceed_man_dict = {}
-    pass_women_dict = {}
-    pass_man_dict = {}
-    for row in open_file.reader:
-        if row[3] == year and row[0] != "Polska":
-            if row[1] == "przystąpiło" and row[2] == "mężczyźni":
-                proceed_man_dict[row[0]] = int(row[4])
-            elif row[1] == "przystąpiło" and row[2] == "kobiety":
-                proceed_women_dict[row[0]] = int(row[4])
-            elif row[1] == "zdało" and row[2] == "mężczyźni":
-                pass_man_dict[row[0]] = int(row[4])
+def province_compare(province_1, province_2):
+    province_1 = input("Type first province : ")
+    province_2 = input("Type second province: ")
+    data = get_data()
+    province_compare_1 = percentage_dict_for_province(province_1, data)
+    province_compare_2 = percentage_dict_for_province(province_2, data)
+    try:
+        for x_value, y_value in zip(province_compare_1.items(), province_compare_2.items()):
+            if x_value > y_value:
+                print(x_value[0], province_1)
+            elif x_value < y_value:
+                print(x_value[0], province_2)
             else:
-                pass_women_dict[row[0]] = int(row[4])
-
-    proceed_dict = {k: (proceed_man_dict[k]+proceed_women_dict[k]) for k in proceed_women_dict}
-    pass_dict = {k: (pass_man_dict[k]+pass_women_dict[k]) for k in pass_women_dict}
-    pass_rate_dict = {k: (float(pass_dict[k]/proceed_dict[k]*100)) for k in proceed_dict}
-
-    return pass_rate_dict
+                print(x_value[0], "Provinces are equal")
+    except:
+        print("Incorrect province")
+        pass
+    return province_compare_1, province_compare_2
 
 
-def rate_calculator():
-    year_set = set_of_all_years()
-    open_file()
+def pass_rate_dict_maker(year, data):
     proceed_women_dict = {}
     proceed_man_dict = {}
     pass_women_dict = {}
     pass_man_dict = {}
-    all_items_list = []
-    for year in year_set:
-        open_file.csv_file.seek(0)
-        for row in open_file.reader:
+
+    try:
+        for row in data:
             if row[3] == str(year) and row[0] != "Polska":
                 if row[1] == "przystąpiło" and row[2] == "mężczyźni":
                     proceed_man_dict[row[0]] = int(row[4])
@@ -187,42 +205,63 @@ def rate_calculator():
                     proceed_women_dict[row[0]] = int(row[4])
                 elif row[1] == "zdało" and row[2] == "mężczyźni":
                     pass_man_dict[row[0]] = int(row[4])
-                else:                
-                    pass_women_dict[row[0]] = int(row[4]) 
-        proceed_dict = {k: (proceed_man_dict[k]+proceed_women_dict[k]) for k in proceed_women_dict}
-        pass_dict = {k: (pass_man_dict[k]+pass_women_dict[k]) for k in pass_women_dict}
-        pass_rate_dict = {k: float(pass_dict[k]/proceed_dict[k]*100) for k in proceed_dict}
-        for k,v in pass_rate_dict.items():
-            all_items_list.append([k, year, v])
+                else:
+                    pass_women_dict[row[0]] = int(row[4])
+        if bool(proceed_man_dict) == False:
+            proceed_dict = proceed_women_dict
+            pass_dict = pass_women_dict
+        elif bool(proceed_women_dict) == False:
+            proceed_dict = proceed_man_dict
+            pass_dict = pass_man_dict
+        else:
+            proceed_dict = {
+                k: (proceed_man_dict[k]+proceed_women_dict[k]) for k in proceed_women_dict
+                }
+            pass_dict = {
+                k: (pass_man_dict[k]+pass_women_dict[k]) for k in pass_women_dict
+                        }
+        pass_rate_dict = {
+            k: (float(pass_dict[k]/proceed_dict[k]*100)) for k in proceed_dict
+            }
+    except:
+        pass
 
-    return all_items_list
+    return pass_rate_dict
 
 
-def temporary():
+def best_province(year):
+    year = input("Type year: ")
+    data = get_data()
+    try : 
+        pass_rate_dict = pass_rate_dict_maker(year, data)
+        max_pass_value = max(list(pass_rate_dict.values()))
+        print(max(pass_rate_dict.items(), key=operator.itemgetter(1))[0], "-", math.floor(max_pass_value), "%")
+    except:
+        print("Incorrect year")
+        pass
+    return max_pass_value
 
-    all_items_list = rate_calculator()
-    all_items_list.sort()
-    for i in range(len(all_items_list)):
-        if (all_items_list[i][0] == all_items_list[i-1][0]) and (all_items_list[i][2] < all_items_list[i-1][2]):
-                print(all_items_list[i][0], all_items_list[i][1], "Regresja")
 
-def test():
-    year_set = set_of_all_years()
-    proceed_women_dict = {}
-    proceed_man_dict = {}
-    pass_women_dict = {}
-    pass_man_dict = {}
+def regression_detection():
     all_items_list = []
-    for year in range(len(year_set)):
-        pass_rate_dict = pass_rate_dict_maker(year)
-        print(pass_rate_dict)
-
-#    print(all_items_list)
+    data = get_data()
+    year_set = set_of_all_years(data)
+    try:
+        for year in year_set:
+            pass_rate_dict = pass_rate_dict_maker(year, data)
+            for key, value in pass_rate_dict.items():
+                sublist = [key, year, value]
+                all_items_list.append(sublist) 
+        all_items_list.sort()
+        for i in range(len(all_items_list)):
+            if (all_items_list[i][0] == all_items_list[i-1][0]) and \
+                (all_items_list[i][2] < all_items_list[i-1][2]):
+                    print(all_items_list[i][0], ",", all_items_list[i][1], "- Regression detected")
+    except:
+        print("Invalid data set")
+        pass
 
 
 if __name__ == "__main__":
-#    test()
-#    average(year="", voivodeship="")
-#    pass_rate_for_voivodeship(voivodeship="")
-    best_voivodeship(year="")
 
+    program()

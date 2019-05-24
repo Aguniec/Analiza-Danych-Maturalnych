@@ -1,3 +1,25 @@
 {
-    "python.pythonPath": "/anaconda3/envs/RecurimentProject/bin/python"
+    "python.pythonPath": "/anaconda3/envs/RecurimentProject/bin/python",
+    "sqltools.connections": [
+        {
+            "askForPassword": true,
+            "connectionTimeout": 30,
+            "database": "database.db",
+            "dialect": "MySQL",
+            "name": "LocalConnection",
+            "port": 3306,
+            "server": "127.0.0.1",
+            "username": "Agnieszka"
+        },
+        {
+            "askForPassword": false,
+            "connectionTimeout": 30,
+            "database": "database.db",
+            "dialect": "MySQL",
+            "name": "LocalHost",
+            "port": 3306,
+            "server": "127.0.0.1",
+            "username": "Agnieszka"
+        }
+    ]
 }

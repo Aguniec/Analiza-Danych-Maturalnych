@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/Liczba_osób_które_przystapiły_lub_zdały_egzamin_maturalny.csv" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Database/Liczba_osób_które_przystapiły_lub_zdały_egzamin_maturalny.csv" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/Database/database.db" charset="ISO-8859-1" />
     <file url="file://$PROJECT_DIR$/Liczba_osób_które_przystapiły_lub_zdały_egzamin_maturalny.csv" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/Scripts/Liczba_osób_które_przystapiły_lub_zdały_egzamin_maturalny.csv" charset="UTF-8" />
   </component>
 </project>
