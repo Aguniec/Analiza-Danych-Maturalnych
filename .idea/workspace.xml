@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7aa87f22-369c-4223-9c9b-6a60987f9ff6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Liczba_osób_które_przystapiły_lub_zdały_egzamin_maturalny.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Liczba_osób_które_przystapiły_lub_zdały_egzamin_maturalny.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/myscript.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/myscript.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/test_sample.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/test_sample.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,7 +25,7 @@
           <entry key="7" value="2" />
           <entry key="csv" value="17" />
           <entry key="db" value="3" />
-          <entry key="py" value="14" />
+          <entry key="py" value="16" />
           <entry key="sql" value="5" />
         </counts>
       </usages-collector>
@@ -39,7 +34,7 @@
           <entry key="CSV" value="16" />
           <entry key="DBN-SQL" value="5" />
           <entry key="PLAIN_TEXT" value="3" />
-          <entry key="Python" value="14" />
+          <entry key="Python" value="16" />
           <entry key="SQL" value="3" />
         </counts>
       </usages-collector>
@@ -48,7 +43,7 @@
           <entry key="Python Console" value="2" />
           <entry key="csv" value="1" />
           <entry key="db" value="1" />
-          <entry key="py" value="9447" />
+          <entry key="py" value="12229" />
           <entry key="sql" value="3" />
         </counts>
       </usages-collector>
@@ -56,7 +51,7 @@
         <counts>
           <entry key="CSV" value="1" />
           <entry key="DBN-SQL" value="3" />
-          <entry key="Python" value="9449" />
+          <entry key="Python" value="12231" />
           <entry key="SQL" value="1" />
         </counts>
       </usages-collector>
@@ -67,8 +62,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Scripts/myscript.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="23" lean-forward="true" selection-start-line="6" selection-end-line="12" selection-end-column="23" />
+            <state relative-caret-position="3660">
+              <caret line="244" selection-start-line="244" selection-end-line="261" selection-end-column="12" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -77,10 +72,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Scripts/testy.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="272" column="15" selection-start-line="272" selection-start-column="15" selection-end-line="272" selection-end-column="15" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Tests/test_sample.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="255">
+              <caret line="17" column="27" lean-forward="true" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -139,6 +146,8 @@
       <find>Polsk</find>
       <find>Pomorskie</find>
       <find>file</find>
+      <find>test.</find>
+      <find>test</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -162,6 +171,8 @@
         <option value="$PROJECT_DIR$/Scripts/myscript.py" />
         <option value="$PROJECT_DIR$/apis/myscript_api.py" />
         <option value="$PROJECT_DIR$/Tests/test_sample.py" />
+        <option value="$PROJECT_DIR$/Tests/testy.py" />
+        <option value="$PROJECT_DIR$/Scripts/testy.py" />
       </list>
     </option>
   </component>
@@ -216,10 +227,10 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Scripts" />
       <recent name="$PROJECT_DIR$/Database" />
       <recent name="$PROJECT_DIR$/Tests" />
       <recent name="$PROJECT_DIR$/Tests/Tests-env" />
-      <recent name="$PROJECT_DIR$/Scripts" />
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -240,49 +251,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.myscript">
-    <configuration name="database_workpath" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Recrutiment Project (Profil Software)" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Database" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Database/database_workpath.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="dupa" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Recrutiment Project (Profil Software)" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dupa.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.testy">
     <configuration name="myscript" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Recrutiment Project (Profil Software)" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -346,20 +315,55 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="testy" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Recrutiment Project (Profil Software)" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Scripts/testy.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests in Tests" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="Recrutiment Project (Profil Software)" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/Tests&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.test_sample" />
       <item itemvalue="Python.myscript" />
-      <item itemvalue="Python.dupa" />
       <item itemvalue="Python.myscript_api" />
-      <item itemvalue="Python.database_workpath" />
+      <item itemvalue="Python tests.Unittests in Tests" />
+      <item itemvalue="Python.testy" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.testy" />
+        <item itemvalue="Python.test_sample" />
+        <item itemvalue="Python tests.Unittests in Tests" />
         <item itemvalue="Python.myscript" />
         <item itemvalue="Python.myscript_api" />
-        <item itemvalue="Python.database_workpath" />
-        <item itemvalue="Python.test_sample" />
-        <item itemvalue="Python.dupa" />
       </list>
     </recent_temporary>
   </component>
@@ -376,6 +380,14 @@
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="Unittests_in_Tests - 2019.05.24 at 20h 57m 55s.xml">
+      <configuration name="Unittests in Tests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_Tests - 2019.05.24 at 20h 58m 34s.xml">
+      <configuration name="Unittests in Tests" configurationId="tests" />
+    </history-entry>
+  </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
@@ -387,11 +399,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="3" y="23" width="1277" height="777" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Project Explorer" order="0" weight="0.32961783" />
       <window_info id="Job Explorer" order="1" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" sideWeight="0.4988345" visible="true" weight="0.14649682" />
+      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.4988345" visible="true" weight="0.14649682" />
       <window_info id="DB Browser" order="3" weight="0.32961783" />
       <window_info id="Structure" order="4" sideWeight="0.5011655" side_tool="true" weight="0.14729299" />
       <window_info id="Favorites" order="5" side_tool="true" />
@@ -399,7 +410,7 @@
       <window_info anchor="bottom" id="Console" order="1" />
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.32930514" />
-      <window_info anchor="bottom" id="Run" order="4" sideWeight="0.73487264" visible="true" weight="0.35196376" />
+      <window_info active="true" anchor="bottom" id="Run" order="4" sideWeight="0.73487264" visible="true" weight="0.35196376" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.39879155" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
@@ -412,6 +423,30 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Project Explorer" order="0" weight="0.32961783" />
+      <window_info id="Job Explorer" order="1" />
+      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.4988345" visible="true" weight="0.14649682" />
+      <window_info id="DB Browser" order="3" weight="0.32961783" />
+      <window_info id="Structure" order="4" sideWeight="0.5011655" side_tool="true" weight="0.14729299" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="DB Execution Console" order="0" />
+      <window_info anchor="bottom" id="Console" order="1" />
+      <window_info anchor="bottom" id="Message" order="2" />
+      <window_info anchor="bottom" id="Find" order="3" weight="0.32930514" />
+      <window_info active="true" anchor="bottom" id="Run" order="4" sideWeight="0.73487264" visible="true" weight="0.35196376" />
+      <window_info anchor="bottom" id="Debug" order="5" weight="0.39879155" />
+      <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="8" weight="0.32930514" />
+      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.82085985" weight="0.32930514" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.2651274" side_tool="true" weight="0.35196376" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32930514" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -492,6 +527,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Tests/test_sample.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="27" lean-forward="true" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/apis/myscript_api.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="37">
@@ -504,20 +549,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/myscript.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="23" lean-forward="true" selection-start-line="6" selection-end-line="12" selection-end-column="23" />
+        <state relative-caret-position="3660">
+          <caret line="244" selection-start-line="244" selection-end-line="261" selection-end-column="12" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tests/test_sample.py">
+    <entry file="file://$PROJECT_DIR$/Scripts/testy.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        <state relative-caret-position="264">
+          <caret line="272" column="15" selection-start-line="272" selection-start-column="15" selection-end-line="272" selection-end-column="15" />
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
