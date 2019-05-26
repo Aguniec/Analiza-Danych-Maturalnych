@@ -20,7 +20,7 @@ W celu rozpoczęcia korzystania ze skrytpu, należy pobrać folder ```Scripts```
 5. ```province_compare``` - dla dwóch podanych województw oblicza, które z nich miało lepszą zdawalność na przestrzeni lat.
 
 ### Testy jednostkowe
-W katalogu głównym ```Scripts``` znajduje się plik ```test_for_all_data.py``` testujący metody wykonujące główne komendy dla całego zbioru danych, wykorzystując bibliotekę  *Pytest*. Do poprawnego działania programu konieczne jest aby w tym samym folderze znajdował się plik *Liczba_osób_które_przystapiły_lub_zdały_egzamin_maturalny.csv* 
+W katalogu głównym znajduje się plik ```test_for_all_data.py``` testujący metody wykonujące główne komendy dla całego zbioru danych, wykorzystując bibliotekę  *Pytest*. Do poprawnego działania programu konieczne jest aby w tym samym folderze znajdował się plik *Liczba_osób_które_przystapiły_lub_zdały_egzamin_maturalny.csv* 
 
 ### Uwagi dodatkowe
 * Folder ```Data from database``` zawiera plik ```data_from_database.py```, który pozwala na jednorazowe zaimportowanie danych pochodzących z pliku *Liczba_osób_które_przystapiły_lub_zdały_egzamin_maturalny.csv* do pliku *database.sql* z wykorzystaniem biblioteki *Pandas*. Poprzez problem z dekodowaniem dane w bazie nie wyświetlają się poprawnie.
