@@ -1,8 +1,5 @@
 import requests
 import json
-import math
-
-
 
 data = []
 for page in range(1,32):
