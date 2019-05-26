@@ -40,14 +40,14 @@ def get_data():
 
 def menu():
     clear_screen()
-    print("Instrucions:")
-    print("Type 1 to calculate the average number of people entering the final year in the given province")
-    print("Type 2 to calculate the rate of success for a given province over the years")
-    print("Type 3 to find the province with the best pass rate in a given year")
-    print("Type 4 to detect province that have regressed")
-    print("Type 5 to compare the pass rate in two provinces")
-    print("Type 6 to go back to this screen")
-    print("Type esc to exit")
+    print("Instructions: \n"
+          "Type 1 to calculate the average number of people who take the matura exam in the given province \n"
+          "Type 2 to calculate the rate of success for a given province over the years \n"
+          "Type 3 to find the province with the best pass rate in a given year \n"
+          "Type 4 to detect province that have regressed \n"
+          "Type 5 to compare the pass rate in two provinces \n"
+          "Type 6 to go back to this screen \n"
+          "Type esc to exit")
 
 
 def clear_screen():
@@ -104,7 +104,6 @@ def set_of_all_years(data):
                 year_set.append(new_element)
     except:
         print("Invalid data")
-        pass
 
     return year_set
 

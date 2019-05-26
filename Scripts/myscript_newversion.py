@@ -1,3 +1,4 @@
+
 import csv
 import os
 import math
@@ -9,10 +10,10 @@ class GetData:
     def __init__(self, data):
         self.data = data
 
-    def get_data(self):
+    def get_data(self, sex_filter):
         """Select data for the selecte filter"""
         data_list = []
-        sex_filter = input("Set filter: (w - data for women, m - data for men, type nothing to get all the data): ")
+        self.sex_filter = input("Set filter: (w - data for women, m - data for men, type nothing to get all the data): ")
 
         if sex_filter == "":
             for row in self.data:
@@ -32,49 +33,46 @@ class GetData:
 
 class UserInterface:
 
-    def __init__(self):
-        self.clear_command = os.system("cls" if os.name == "nt" else "clear")
-        self.instructions = print("Instructions: \n \
-                                  Type 1 to calculate the average number of people entering the final year in the given province \n\
-                                  Type 2 to calculate the rate of success for a given province over the years \n\
-                                  Type 3 to find the province with the best pass rate in a given year \n\
-                                  Type 4 to detect province that have regressed \n"
-                                  "Type 5 to compare the pass rate in two provinces \n"
-                                  "Type 6 to go back to this screen \n"
-                                  "Type esc to exit")
-#        self.command = input()
 
     def menu(self):
+        user_interface.clear_screen()
 
-        self.clear_command
-        self.instructions
+        print("Instructions: \n"
+              "Type 1 to calculate the average number of people who take the matura exam in the given province \n"
+              "Type 2 to calculate the rate of success for a given province over the years \n"
+              "Type 3 to find the province with the best pass rate in a given year \n"
+              "Type 4 to detect province that have regressed \n"
+              "Type 5 to compare the pass rate in two provinces \n"
+              "Type 6 to go back to this screen \n"
+              "Type esc to exit")
+
+    def clear_screen(self):
+        os.system("cls" if os.name == "nt" else "clear")
 
     def check_input(self):
+
         """Check command typed by user"""
         while input != "esc":
             print("Type command:")
             self.command = input()
 
             if self.command == "1":
-                print("1")
-#                average(year="", province="")
+                user_command.average(year="", province="")
+
             elif self.command == "2":
-                print("1")
-#                pass_rate_for_province(province="")
+                user_command.pass_rate_for_province(province="")
+
             elif self.command == "3":
-                print("1")
+                user_command.best_province(year="")
 
-#                best_province(year="")
             elif self.command == "4":
-                print("1")
+                user_command.regression_detection()
 
-#                regression_detection()
             elif self.command == "5":
-                print("1")
+                user_command.province_compare(province_1="", province_2="")
 
-#                province_compare(province_1="", province_2="")
             elif self.command == "6":
-                print("1")
+                user_interface.menu()
 
             elif self.command == "esc":
                 raise SystemExit
@@ -84,14 +82,17 @@ class UserInterface:
 
         return self.command
 
-
+    def program(self):
+        user_interface.menu()
+        user_interface.check_input()
 
 
 
 class DataAnalysis :
 
     def __init__(self):
-        self.data = imported_data.get_data()
+        imported_data = GetData(reader)
+        self.data = imported_data.get_data(sex_filter = "")
 
     def set_of_all_years(self):
         """Return set of all avalible years"""
@@ -106,24 +107,27 @@ class DataAnalysis :
         except:
             print("Invalid data")
             pass
-
         return year_set
 
 
-    def average(self,year, province):
+    def average(self, year, province):
         """Return average of people for given year and province"""
         self.year = int(input("Type year: "))
         self.province = input("Type province: ")
-        year_set = choosen_command.set_of_all_years()
-        array_of_people = []
-        for row in self.data:
-            for i in range(min(year_set), self.year + 1):
-                if (row[0] == self.province and row[1] == "przystąpiło") and row[3] == str(i):
-                    array_of_people.append(int(row[4]))
-        sum_of_people = sum(array_of_people)
-        average_quantity_of_people = math.floor(sum_of_people / len(array_of_people))
+        try :
+            year_set = user_command.set_of_all_years()
+            array_of_people = []
+            for row in self.data:
+                for i in range(min(year_set), self.year + 1):
+                    if (row[0] == self.province and row[1] == "przystąpiło") and row[3] == str(i):
+                        array_of_people.append(int(row[4]))
+            sum_of_people = sum(array_of_people)
+            average_quantity_of_people = math.floor(sum_of_people / len(array_of_people))
 
-        print(average_quantity_of_people)
+            print(average_quantity_of_people)
+        except :
+            print("Invalid year or province")
+
         return average_quantity_of_people
 
 
@@ -132,7 +136,7 @@ class DataAnalysis :
         proceed_to_the_exam = []
         pass_the_exam = []
         percentage_rate_dict = {}
-        year_set = choosen_command.set_of_all_years()
+        year_set = user_command.set_of_all_years()
         self.province = province
         try:
             for year in range(min(year_set), max(year_set) + 1):
@@ -154,7 +158,7 @@ class DataAnalysis :
 
     def pass_rate_for_province(self, province):
         self.province = input("Type province: ")
-        pass_items = choosen_command.percentage_dict_for_province(self.province)
+        pass_items = user_command.percentage_dict_for_province(self.province)
         try:
             for i in (pass_items):
                 print(i, "-", pass_items[i], "%")
@@ -168,8 +172,8 @@ class DataAnalysis :
         """Print between """
         self.province_1 = input("Type first province : ")
         self.province_2 = input("Type second province: ")
-        province_compare_1 = choosen_command.percentage_dict_for_province(self.province_1)
-        province_compare_2 = choosen_command.percentage_dict_for_province(self.province_2)
+        province_compare_1 = user_command.percentage_dict_for_province(self.province_1)
+        province_compare_2 = user_command.percentage_dict_for_province(self.province_2)
         try:
             for x_value, y_value in zip(province_compare_1.items(), province_compare_2.items()):
                 if x_value > y_value:
@@ -222,12 +226,10 @@ class DataAnalysis :
 
         return pass_rate_dict
 
-
     def best_province(self, year):
         self.year = input("Type year: ")
-
         try:
-            pass_rate_dict = choosen_command.pass_rate_dict_maker(self.year)
+            pass_rate_dict = user_command.pass_rate_dict_maker(self.year)
             max_pass_value = max(list(pass_rate_dict.values()))
             print(max(pass_rate_dict.items(), key=operator.itemgetter(1))[0], "-", math.floor(max_pass_value), "%")
         except:
@@ -239,10 +241,10 @@ class DataAnalysis :
     def regression_detection(self):
         all_items_list = []
 
-        year_set = choosen_command.set_of_all_years()
+        year_set = user_command.set_of_all_years()
         try:
             for year in year_set:
-                pass_rate_dict = choosen_command.pass_rate_dict_maker(year)
+                pass_rate_dict = user_command.pass_rate_dict_maker(year)
                 for key, value in pass_rate_dict.items():
                     sublist = [key, year, value]
                     all_items_list.append(sublist)
@@ -255,19 +257,14 @@ class DataAnalysis :
             print("Invalid data set")
             pass
 
+
 csv_file = open('Liczba_osób_które_przystapiły_lub_zdały_egzamin_maturalny.csv', newline="", encoding="utf-8")
 reader = csv.reader(csv_file, delimiter=';')
 
 imported_data = GetData(reader)
-#imported_data.get_data()
+user_interface = UserInterface()
+user_command = DataAnalysis()
 
-#test = UserInterface()
-#test.check_input()
+user_interface.program()
 
 
-choosen_command = DataAnalysis()
-#choosen_command.average(year="", province="")
-#choosen_command.pass_rate_for_province(province="")
-#choosen_command.province_compare(province_1="", province_2="")
-#choosen_command.best_province(year="")
-choosen_command.regression_detection()

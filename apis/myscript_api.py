@@ -1,20 +1,17 @@
 import requests
 import json
+import math
 
 
 
-full_data = []
+data = []
 for page in range(1,32):
     url = "https://api.dane.gov.pl/resources/17363/data?page=" + str(page)
     response = requests.get(url)
-    data = json.loads(response.text)
-    data_2 = data["data"]
-    for i in data_2:
-        full_data_appended = full_data.append(i["attributes"])
+    load_data = json.loads(response.text)
+    load_data_2 = load_data["data"]
+    for i in load_data_2:
+        full_data_appended = data.append(i["attributes"])
 
-
-for row in full_data:
-    if row["col1"] == "Polska":
-        print(row["col2"])
-
-
+for row in data:
+    print(row)
