@@ -25,7 +25,7 @@ W katalogu głównym znajduje się plik ```test_for_all_data.py``` testujący me
 ### Uwagi dodatkowe
 * Folder ```Data from database``` zawiera plik ```data_from_database.py```, który pozwala na jednorazowe zaimportowanie danych pochodzących z pliku *Liczba_osób_które_przystapiły_lub_zdały_egzamin_maturalny.csv* do pliku *database.sql* z wykorzystaniem biblioteki *Pandas*. Poprzez problem z dekodowaniem dane w bazie nie wyświetlają się poprawnie.
 * Plik ```myscript_api.py``` znajujący się w folderze ```Data from API``` umożliwia na pobranie danych z API znajdujących się pod linkiem (https://api.dane.gov.pl/resources/17363). 
-* Niestety nie udało mi się w pełni wykonać zadań bonusowych. W miarę dalszego rozwijania tego projektu, w pierwszej kolejności planuję:
+* W miarę dalszego rozwijania tego projektu, w pierwszej kolejności planuję:
     - dodać więcej testów, obejmujących wszystkie metody oraz poszczególne zbiory danych, dla każdego z dostępnyh filtrów,
     - naprawić problem z niepoprawnym dekodowaniem danych w bazie SQL oraz stworzyć metody na nich operujące,
     - przekształcić dane pobrane z API tak, aby móc zaimplementować dla nich metody znajdujące się w skrypcie.
